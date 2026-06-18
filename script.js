@@ -221,6 +221,11 @@ function loadHistory() {
 function saveFavorite() {
   let result = getResultBox().innerText.trim();
 
+if (result.includes("Generate Content par click")) {
+  alert("Pehle content generate karo!");
+  return;
+}
+
   if (result === "") {
     alert("Generate content first!");
     return;
@@ -238,12 +243,24 @@ function saveFavorite() {
 
 function loadFavorites() {
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  favorites = favorites.filter(item =>
+    item &&
+    item.trim() !== "" &&
+    !item.includes("Generate Content par click") &&
+    item.trim() !== "⭐" &&
+    item.trim() !== "🚀"
+  );
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
   document.getElementById("favCount").innerText = favorites.length;
 
   document.getElementById("favorites").innerHTML =
     favorites.length === 0
       ? "No favorites yet."
-      : favorites.map((item, index) => `⭐ Favorite ${index + 1}<br><small>${item.slice(0, 120)}...</small>`).join("<hr>");
+      : favorites.map((item, index) =>
+          `⭐ Favorite ${index + 1}<br><small>${item.slice(0, 120)}...</small>`
+        ).join("<hr>");
 }
 
 function searchHistory() {
