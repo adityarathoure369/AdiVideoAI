@@ -62,6 +62,114 @@ SCENE 4:
 Final ending scene of ${topic}, emotional or funny, 4K quality`;
   }
 
+if (generator === "description") {
+  return `📄 DESCRIPTION GENERATOR
+
+Watch this ${duration} ${type} video about "${topic}".
+
+This video is made for ${platform}. It includes an engaging story, powerful visuals, and a viral style.
+
+Don't forget to like, share and follow for more videos.`;
+}
+
+if (generator === "thumbnail") {
+  return `🎯 THUMBNAIL PROMPT
+
+Create a viral YouTube thumbnail for "${topic}".
+
+STYLE:
+${type} style, bright colors, high CTR, cinematic lighting, emotional face, big bold text, clean background, 4K quality.
+
+TEXT ON THUMBNAIL:
+${topic}`;
+}
+
+if (generator === "ideas") {
+  return `💡 VIDEO IDEAS
+
+1. ${topic} But Something Goes Wrong
+2. 5 Amazing Facts About ${topic}
+3. ${topic} in 30 Seconds
+4. Funny Story of ${topic}
+5. ${topic} Viral Short Video`;
+}
+
+if (generator === "hooks") {
+  return `🔥 VIRAL HOOKS
+
+1. You won't believe what happened with ${topic}!
+2. This ${topic} story will surprise you.
+3. Wait till the end!
+4. What if ${topic} became real?
+5. This changed everything.`;
+}
+
+if (generator === "voiceover") {
+  return `🎙️ VOICEOVER
+
+Hello friends! Today we are going to see an amazing story about "${topic}".
+
+At first, everything looks normal. But suddenly, something unexpected happens.
+
+Watch till the end because the ending is very surprising.`;
+}
+
+if (generator === "cta") {
+  return `📢 CTA GENERATOR
+
+If you enjoyed this video, like, share and subscribe.
+
+Comment your favorite part below.
+
+Follow for more ${type} videos.`;
+}
+
+if (generator === "story") {
+  return `📖 STORY GENERATOR
+
+Once upon a time, there was ${topic}.
+
+One day, something unexpected happened. The main character faced a big challenge.
+
+In the end, the character learned an important lesson and became stronger.`;
+}
+
+if (generator === "character") {
+  return `🧑 CHARACTER GENERATOR
+
+Character Name: Adi
+
+Role:
+Main hero of "${topic}"
+
+Look:
+Cute, expressive face, colorful outfit, friendly personality.
+
+Style:
+${type} style, cinematic lighting, 3D cartoon quality.`;
+}
+
+if (generator === "scene") {
+  return `🎬 SCENE GENERATOR
+
+SCENE 1:
+Opening shot of ${topic}.
+
+SCENE 2:
+Main character enters.
+
+SCENE 3:
+Something unexpected happens.
+
+SCENE 4:
+Funny or emotional moment.
+
+SCENE 5:
+Powerful ending with viral feel.`;
+
+}
+
+
   if (generator === "allinone") {
     return `🚀 ALL-IN-ONE AI PACKAGE
 
@@ -325,6 +433,7 @@ function setTemplate(template) {
 
   document.getElementById("generator").value = "allinone";
   generate();
+
 }
 
 window.onload = function () {
