@@ -320,3 +320,24 @@ margin-left: 10px;s
   font-size: 14px;
 }
 
+.light-mode .dash-card {
+  background: white;
+  color: #111827;
+  border: 1px solid #22c55e;
+}
+
+.light-mode .dash-card span {
+  color: #059669;
+}
+
+.light-mode #favorites {
+  background: white;
+  color: #111827;
+  border: 2px solid #facc15;
+  padding: 20px;
+}
+
+.light-mode #favorites small {
+  color: #111827;
+  font-size: 15px;
+}
