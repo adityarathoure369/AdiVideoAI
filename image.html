@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Image Prompt Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>AI Image Prompt Generator</h1>
+  <p>Create powerful prompts for AI images and AI videos.</p>
+
+  <input id="imageTopic" type="text" placeholder="Enter image idea">
+
+  <select id="imageStyle">
+    <option value="3D cartoon Pixar style">3D Cartoon</option>
+    <option value="cinematic realistic style">Cinematic</option>
+    <option value="anime style">Anime</option>
+    <option value="horror dark cinematic style">Horror</option>
+    <option value="gaming neon style">Gaming</option>
+  </select>
+
+  <select id="imageRatio">
+    <option value="vertical 9:16">YouTube Shorts 9:16</option>
+    <option value="wide 16:9">YouTube Video 16:9</option>
+    <option value="square 1:1">Instagram Post 1:1</option>
+  </select>
+
+  <button onclick="generateImagePrompt()">Generate Image Prompt</button>
+  <button onclick="copyImagePrompt()">Copy</button>
+
+  <div id="imageResult"></div>
+
+  <br>
+  <a href="index.html">
+    <button>⬅ Back to Home</button>
+  </a>
+</div>
+
+<script src="image.js"></script>
+</body>
+</html>

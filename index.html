@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adi All-in-One AI Video Tool</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="logo-badge">⚡ Adi AI Studio</div>
+    <div class="version-badge">Version 1.0</div>
+
+    <h1>Adi All-in-One AI Video Tool</h1>
+
+    <p>Create AI Scripts, Prompts, Thumbnails, Images and Video Ideas in Seconds.</p>
+
+<p class="hero-text">
+🚀 Create Movie Trailers, Cartoon Videos, Horror Stories and Viral Shorts with AI</p>
+
+<div class="feature-row">
+    <div class="feature-card">🎬 Movie Trailer Creator</div>
+    <div class="feature-card">🎨 Cartoon Creator</div>
+    <div class="feature-card">👻 Horror Story Creator</div>
+    <div class="feature-card">🚀 Viral Shorts Creator</div>
+</div>	
+
+<div class="stats">
+    <div class="stat-card">
+        <h2>14+</h2>
+        <p>AI Generators</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>1000+</h2>
+        <p>Video Ideas</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>50k</h2>
+        <p>AI Creator</p>
+    </div>
+</div>
+
+<div class="dashboard-stats">
+  <div class="dash-card">Generated: <span id="genCount">0</span></div>
+  <div class="dash-card">Favorites: <span id="favCount">0</span></div>
+  <div class="dash-card">History: <span id="hisCount">0</span></div>
+</div>
+
+<div class="template-row">
+    <button onclick="setTemplate('movie')">🎬 Movie Trailer</button>
+    <button onclick="setTemplate('horror')">👻 Horror Story</button>
+    <button onclick="setTemplate('cartoon')">🎨 Cartoon Video</button>
+    <button onclick="setTemplate('dragon')">🐉 Dragon Story</button>
+    <button onclick="setTemplate('space')">🚀 Space Adventure</button>
+    <button onclick="setTemplate('comedy')">😂 Comedy Short</button>
+</div>
+
+    <input id="topic" type="text" placeholder="Enter video idea">
+
+    <select id="mode">
+      <option value="flow">Flow Mode</option>
+      <option value="invideo">InVideo Mode</option>
+      <option value="banana">Nano Banana Mode</option>
+      <option value="lerando">Lerando AI Mode</option>
+      <option value="king">King AI Mode</option>
+    </select>
+
+    <select id="language">
+      <option value="hinglish">Hinglish</option>
+      <option value="english">English</option>
+      <option value="hindi">Hindi</option>
+    </select>
+
+    <select id="type">
+      <option value="cartoon">Cartoon</option>
+      <option value="gaming">Gaming</option>
+      <option value="facts">Facts</option>
+      <option value="motivation">Motivation</option>
+      <option value="horror">Horror</option>
+    </select>
+
+    <select id="duration">
+      <option value="30 seconds">30 sec</option>
+      <option value="1 minute">1 min</option>
+      <option value="3 minutes">3 min</option>
+    </select>
+
+<select id="platform">
+    <option value="youtube">YouTube Shorts</option>
+    <option value="reels">Instagram Reels</option>
+    <option value="tiktok">TikTok</option>
+</select>
+
+<select id="generator">
+    <option value="script">Script Generator</option>
+    <option value="image">Image Prompt Generator</option>
+    <option value="title">Title Generator</option>
+    <option value="hashtags">Hashtag Generator</option>
+<option value="description">Description Generator</option>
+<option value="thumbnail">Thumbnail Prompt Generator</option>
+<option value="ideas">Video Ideas Generator</option>
+<option value="hooks">Viral Hook Generator</option>
+<option value="voiceover">Voiceover Generator</option>
+<option value="cta">CTA Generator</option>
+<option value="story">Story Generator</option>
+<option value="character">Character Generator</option>
+<option value="scene">Scene Generator</option>
+<option value="allinone">All-In-One Generator</option>
+
+</select>
+
+<div class="feature-row">
+  <a href="thumbnail.html">
+    <button>🎨 Thumbnail Generator</button>
+  </a>	
+
+<a href="image.html">
+  <button>🖼️ Image Prompt Generator</button>
+</a>
+
+<a href="video.html">
+  <button>🎬 Video Prompt Generator</button>
+</a>
+
+</div>
+
+<button onclick="toggleTheme()">🌙 Toggle Theme</button>
+
+    <button id="generateBtn" onclick="generate()">Generate Content</button>
+    <button onclick="copyResult()">Copy</button>
+    <button onclick="downloadResult()">Download TXT</button>
+<button onclick="downloadPDF()">Download PDF</button>
+<button onclick="saveFavorite()">⭐ Save Favorite</button>
+<button onclick="clearHistory()">🗑 Clear History</button>
+<button onclick="clearFavorites()">⭐ Clear Favorites</button>
+
+<div id="result">
+🚀 Generate Content par click karke AI output dekho...
+</div>
+
+<h2>⭐ Favorites</h2>
+<div id="favorites">
+
+</div>
+
+<h2>📜 Recent History</h2>
+
+<input id="historySearch"
+type="text"
+placeholder="Search history..."
+onkeyup="searchHistory()">
+
+<div id="history"></div>
+
+<footer>
+  © 2026 Adi AI Studio 🚀
+  <br>
+  Built by Aditya Rathod
+</footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Video Prompt Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>AI Video Prompt Generator</h1>
+  <p>Create cinematic prompts for AI video tools.</p>
+
+  <input id="videoTopic" type="text" placeholder="Enter video idea">
+
+  <select id="videoTool">
+    <option value="Kling AI">Kling AI</option>
+    <option value="Runway ML">Runway ML</option>
+    <option value="Pika Labs">Pika Labs</option>
+    <option value="InVideo AI">InVideo AI</option>
+    <option value="Veo Style">Veo Style</option>
+  </select>
+
+  <select id="videoStyle">
+    <option value="cinematic realistic">Cinematic Realistic</option>
+    <option value="3D cartoon Pixar style">3D Cartoon</option>
+    <option value="horror dark cinematic">Horror</option>
+    <option value="gaming action montage">Gaming</option>
+    <option value="motivational epic">Motivational</option>
+  </select>
+
+  <select id="videoDuration">
+    <option value="5 seconds">5 sec</option>
+    <option value="10 seconds">10 sec</option>
+    <option value="30 seconds">30 sec</option>
+  </select>
+
+  <button onclick="generateVideoPrompt()">Generate Video Prompt</button>
+  <button onclick="copyVideoPrompt()">Copy</button>
+
+  <div id="videoResult"></div>
+
+  <br>
+  <a href="index.html">
+    <button>⬅ Back to Home</button>
+  </a>
+</div>
+
+<script src="video.js"></script>
+</body>
+</html>
