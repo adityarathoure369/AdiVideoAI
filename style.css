@@ -312,7 +312,7 @@ footer{
   display: inline-block;
   padding: 7px 16px;
   margin-bottom: 20px;
-margin-left: 10px;s
+margin-left: 10px;
   border-radius: 30px;
   background: rgba(255,255,255,0.08);
   color: #d1d5db;
@@ -340,4 +340,37 @@ margin-left: 10px;s
 .light-mode #favorites small {
   color: #111827;
   font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 10px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  button, #generateBtn {
+    width: 100%;
+    margin: 8px 0;
+    font-size: 16px;
+  }
+
+  input, select {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  #result, #thumbResult, #imageResult, #videoResult {
+    padding: 20px;
+    font-size: 16px;
+  }
+
+  .version-badge {
+    margin-left: 0;
+    margin-top: 8px;
+  }
 }
