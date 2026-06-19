@@ -439,7 +439,8 @@ function loadProjects(list = null) {
             <div class="project-date">🕒 ${item.date}</div>
             <div class="project-preview">${item.content.slice(0, 180)}...</div>
             <button onclick="openProject(${index})">📂 Open</button>
-            <button onclick="deleteProject(${index})">🗑 Delete</button>
+<button onclick="deleteProject(${index})">🗑 Delete</button>
+<button onclick="exportProject(${index})">📥 Export</button>
           </div>`
         ).join("");
 }
@@ -469,6 +470,27 @@ function deleteProject(index) {
   loadProjects();
 }
 
+function exportProject(index) {
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+  let project = projects[index];
+
+  if (!project) {
+    alert("Project not found!");
+    return;
+  }
+
+  let fileText = `PROJECT NAME: ${project.name}
+DATE: ${project.date}
+
+CONTENT:
+${project.content}`;
+
+  let blob = new Blob([fileText], { type: "text/plain" });
+  let a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = project.name.replaceAll(" ", "_") + ".txt";
+  a.click();
+}
 
 function clearProjects() {
   localStorage.removeItem("projects");
@@ -520,7 +542,7 @@ function setTemplate(template) {
 window.onload = function () {
   document.getElementById("topic").value = localStorage.getItem("lastTopic") || "";
   document.getElementById("mode").value = localStorage.getItem("lastMode") || "flow";
-  document.getElementById("language").value = localStorage.getItem("lastLanguage") || "hinglish";
+document.getElementById("language").value = localStorage.getItem("lastLanguage") || "english";
   document.getElementById("type").value = localStorage.getItem("lastType") || "cartoon";
   document.getElementById("duration").value = localStorage.getItem("lastDuration") || "30 seconds";
   document.getElementById("platform").value = localStorage.getItem("lastPlatform") || "youtube";
