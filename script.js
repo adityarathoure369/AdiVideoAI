@@ -433,9 +433,25 @@ function loadProjects() {
       : projects.map((item, index) =>
           `💾 <b>${item.name}</b><br>
           <small>${item.date}</small><br>
-          <small>${item.content.slice(0, 150)}...</small><hr>`
+          <small>${item.content.slice(0, 150)}...</small><br>
+          <button onclick="openProject(${index})">📂 Open</button>
+          <button onclick="deleteProject(${index})">🗑 Delete</button>
+          <hr>`
         ).join("");
 }
+
+function openProject(index) {
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+  document.getElementById("result").innerText = projects[index].content;
+}
+
+function deleteProject(index) {
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+  projects.splice(index, 1);
+  localStorage.setItem("projects", JSON.stringify(projects));
+  loadProjects();
+}
+
 
 function clearProjects() {
   localStorage.removeItem("projects");
