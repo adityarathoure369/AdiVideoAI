@@ -374,3 +374,27 @@ margin-left: 10px;
     margin-top: 8px;
   }
 }
+
+#projects{
+  margin-top:15px;
+  padding:20px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(0,255,136,0.3);
+  border-radius:15px;
+  text-align:left;
+  min-height:50px;
+  color:white;
+  font-size:16px;
+  line-height:1.5;
+}
+
+#projects small{
+  font-size:14px;
+  color:#d1d5db;
+}
+
+.light-mode #projects{
+  background:white;
+  color:#111827;
+  border:2px solid #22c55e;
+}

@@ -395,10 +395,58 @@ function clearFavorites() {
   loadFavorites();
 }
 
+function saveProject() {
+  let result = getResultBox().innerText.trim();
+
+  if (result === "" || result.includes("Generate Content par click")) {
+    alert("Pehle content generate karo!");
+    return;
+  }
+
+  let projectName = prompt("Project ka naam likho:");
+
+  if (!projectName || projectName.trim() === "") {
+    alert("Project name required!");
+    return;
+  }
+
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+  projects.unshift({
+    name: projectName.trim(),
+    content: result,
+    date: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("projects", JSON.stringify(projects));
+  loadProjects();
+
+  alert("Project saved!");
+}
+
+function loadProjects() {
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+  document.getElementById("projects").innerHTML =
+    projects.length === 0
+      ? "No projects saved yet."
+      : projects.map((item, index) =>
+          `💾 <b>${item.name}</b><br>
+          <small>${item.date}</small><br>
+          <small>${item.content.slice(0, 150)}...</small><hr>`
+        ).join("");
+}
+
+function clearProjects() {
+  localStorage.removeItem("projects");
+  loadProjects();
+}
+
 function toggleTheme() {
   document.body.classList.toggle("light-mode");
   localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
 }
+
 
 function setTemplate(template) {
   if (template === "movie") {
@@ -453,4 +501,5 @@ window.onload = function () {
 
   loadHistory();
   loadFavorites();
+loadProjects();
 };
