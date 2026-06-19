@@ -470,6 +470,33 @@ function deleteProject(index) {
   loadProjects();
 }
 
+function saveAIChat() {
+  let content = document.getElementById("chatResult").innerText;
+
+  if (
+  !content ||
+  content.includes("Ask me") ||
+  content.includes("Please ask something")
+) {
+    alert("Generate AI output first.");
+    return;
+  }
+
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+  projects.unshift({
+    name: "AI Chat " + new Date().toLocaleTimeString(),
+    date: new Date().toLocaleString(),
+    content: content
+  });
+
+  localStorage.setItem("projects", JSON.stringify(projects));
+
+  loadProjects();
+
+  alert("AI Chat saved to Projects!");
+}
+
 function exportProject(index) {
   let projects = JSON.parse(localStorage.getItem("projects")) || [];
   let project = projects[index];
