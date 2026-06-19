@@ -600,15 +600,32 @@ ${topic}, cinematic lighting, ultra detailed, high quality, vertical 9:16, smoot
 3. You won't believe the ending.
 4. What if ${topic} became real?
 5. This changed everything.`;
-  } else {
-    answer = `🤖 Try asking:
 
-title for lion story
-script for horror house
-prompt for dragon warrior
-ideas for cartoon cat
-hook for motivation video`;
   }
+
+ else {
+    answer = `🚀 SMART AI PACKAGE FOR "${input}"
+
+🎯 TITLES:
+1. The Secret Behind ${input}
+2. ${input} Changed Everything
+3. The Untold Story of ${input}
+
+💡 IDEAS:
+1. Funny ${input} Story
+2. Emotional ${input} Journey
+3. Viral ${input} Short
+
+🎬 SCRIPT:
+Start with a powerful hook about ${input}.
+Introduce the main character.
+Add a challenge or surprise.
+End with a strong lesson.
+
+🖼️ PROMPT:
+${input}, cinematic lighting, ultra detailed, 4K quality, viral YouTube Shorts style.`;
+
+}
 
   document.getElementById("chatResult").innerText = answer;
 }
