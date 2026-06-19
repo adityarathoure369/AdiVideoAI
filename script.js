@@ -592,7 +592,32 @@ ${topic}, cinematic lighting, ultra detailed, high quality, vertical 9:16, smoot
 3. 5 Amazing Facts About ${topic}
 4. Funny Story of ${topic}
 5. Emotional Ending of ${topic}`;
-  } else if (question.includes("hook")) {
+  } 
+
+else if (question.includes("scene")) {
+  answer = `🎬 SCENE GENERATOR PRO for "${topic}":
+
+SCENE 1 — Opening Shot:
+Show ${topic} in a cinematic environment. Add dramatic lighting, smooth camera movement, and a strong visual opening.
+
+SCENE 2 — Character Entry:
+Introduce the main character related to ${topic}. Show expression, action, and background details.
+
+SCENE 3 — Main Problem:
+Something unexpected happens. Add tension, emotion, or comedy depending on the video style.
+
+SCENE 4 — Big Moment:
+Show the most powerful or funny moment of the story. Add close-up shot, cinematic camera movement, and high energy.
+
+SCENE 5 — Ending Shot:
+End with a strong final visual. Add emotional music, smooth zoom-out, and a viral YouTube Shorts feeling.
+
+VIDEO STYLE:
+Vertical 9:16, 4K quality, cinematic lighting, smooth animation, detailed background.`;
+
+}
+
+else if (question.includes("hook")) {
     answer = `🔥 Hooks for "${topic}":
 
 1. Wait till you see what happens with ${topic}.
