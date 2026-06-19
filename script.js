@@ -540,25 +540,74 @@ function setTemplate(template) {
 }
 
 function askAdiAI() {
-  let question = document.getElementById("chatInput").value.trim().toLowerCase();
+  let input = document.getElementById("chatInput").value.trim();
 
-  if (question === "") {
+  if (input === "") {
     document.getElementById("chatResult").innerText = "⚠️ Please ask something!";
     return;
   }
 
+  let question = input.toLowerCase();
+  let topic = input
+    .replace(/title for/gi, "")
+    .replace(/script for/gi, "")
+    .replace(/prompt for/gi, "")
+    .replace(/ideas for/gi, "")
+    .replace(/hook for/gi, "")
+    .trim();
+
   let answer = "";
 
   if (question.includes("title")) {
-    answer = "🎯 Title Ideas:\n\n1. The Secret Behind Your Video\n2. This Will Surprise You\n3. Watch Till The End\n4. Viral AI Video Idea\n5. Amazing Story Explained";
+    answer = `🎯 Title Ideas for "${topic}":
+
+1. The Secret Behind ${topic}
+2. ${topic} Changed Everything
+3. You Won't Believe This ${topic}
+4. The Untold Story of ${topic}
+5. ${topic} | Viral AI Video`;
   } else if (question.includes("script")) {
-    answer = "🎬 Script:\n\nStart with a strong hook. Introduce the main idea. Add an emotional or funny twist. End with a powerful message and call to action.";
+    answer = `🎬 Script for "${topic}":
+
+HOOK:
+What if ${topic} changed everything?
+
+STORY:
+Today, we are going to explore an amazing story about ${topic}. At first, everything looks normal. But suddenly, something unexpected happens.
+
+ENDING:
+In the end, ${topic} teaches us a powerful lesson.
+
+CTA:
+Like, share and follow for more videos.`;
   } else if (question.includes("prompt")) {
-    answer = "🖼️ Prompt:\n\nCreate a cinematic, high-quality, ultra-detailed vertical 9:16 AI video scene with smooth camera movement, dramatic lighting, realistic shadows and viral YouTube Shorts style.";
+    answer = `🖼️ AI Prompt for "${topic}":
+
+${topic}, cinematic lighting, ultra detailed, high quality, vertical 9:16, smooth camera movement, dramatic background, realistic shadows, viral YouTube Shorts style, 4K quality.`;
   } else if (question.includes("idea")) {
-    answer = "💡 Video Ideas:\n\n1. Funny animal story\n2. Motivational short\n3. Horror mystery\n4. Cartoon adventure\n5. AI movie trailer";
+    answer = `💡 Video Ideas for "${topic}":
+
+1. ${topic} But Something Goes Wrong
+2. ${topic} in 30 Seconds
+3. 5 Amazing Facts About ${topic}
+4. Funny Story of ${topic}
+5. Emotional Ending of ${topic}`;
+  } else if (question.includes("hook")) {
+    answer = `🔥 Hooks for "${topic}":
+
+1. Wait till you see what happens with ${topic}.
+2. This ${topic} story will surprise you.
+3. You won't believe the ending.
+4. What if ${topic} became real?
+5. This changed everything.`;
   } else {
-    answer = "🤖 I can help you with titles, scripts, prompts, hooks, ideas, thumbnails and video content.";
+    answer = `🤖 Try asking:
+
+title for lion story
+script for horror house
+prompt for dragon warrior
+ideas for cartoon cat
+hook for motivation video`;
   }
 
   document.getElementById("chatResult").innerText = answer;
