@@ -539,6 +539,31 @@ function setTemplate(template) {
 
 }
 
+function askAdiAI() {
+  let question = document.getElementById("chatInput").value.trim().toLowerCase();
+
+  if (question === "") {
+    document.getElementById("chatResult").innerText = "⚠️ Please ask something!";
+    return;
+  }
+
+  let answer = "";
+
+  if (question.includes("title")) {
+    answer = "🎯 Title Ideas:\n\n1. The Secret Behind Your Video\n2. This Will Surprise You\n3. Watch Till The End\n4. Viral AI Video Idea\n5. Amazing Story Explained";
+  } else if (question.includes("script")) {
+    answer = "🎬 Script:\n\nStart with a strong hook. Introduce the main idea. Add an emotional or funny twist. End with a powerful message and call to action.";
+  } else if (question.includes("prompt")) {
+    answer = "🖼️ Prompt:\n\nCreate a cinematic, high-quality, ultra-detailed vertical 9:16 AI video scene with smooth camera movement, dramatic lighting, realistic shadows and viral YouTube Shorts style.";
+  } else if (question.includes("idea")) {
+    answer = "💡 Video Ideas:\n\n1. Funny animal story\n2. Motivational short\n3. Horror mystery\n4. Cartoon adventure\n5. AI movie trailer";
+  } else {
+    answer = "🤖 I can help you with titles, scripts, prompts, hooks, ideas, thumbnails and video content.";
+  }
+
+  document.getElementById("chatResult").innerText = answer;
+}
+
 window.onload = function () {
   document.getElementById("topic").value = localStorage.getItem("lastTopic") || "";
   document.getElementById("mode").value = localStorage.getItem("lastMode") || "flow";
