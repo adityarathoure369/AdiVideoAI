@@ -424,21 +424,38 @@ function saveProject() {
   alert("Project saved!");
 }
 
-function loadProjects() {
-  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+function loadProjects(list = null) {
+  let projects = list || JSON.parse(localStorage.getItem("projects")) || [];
+
+  document.getElementById("projectCount").innerText =
+    projects.length === 0 ? "" : `🔎 ${projects.length} project found`;
 
   document.getElementById("projects").innerHTML =
     projects.length === 0
       ? "No projects saved yet."
       : projects.map((item, index) =>
-          `💾 <b>${item.name}</b><br>
-          <small>${item.date}</small><br>
-          <small>${item.content.slice(0, 150)}...</small><br>
-          <button onclick="openProject(${index})">📂 Open</button>
-          <button onclick="deleteProject(${index})">🗑 Delete</button>
-          <hr>`
+          `<div class="project-card">
+            <div class="project-title">💾 ${item.name}</div>
+            <div class="project-date">🕒 ${item.date}</div>
+            <div class="project-preview">${item.content.slice(0, 180)}...</div>
+            <button onclick="openProject(${index})">📂 Open</button>
+            <button onclick="deleteProject(${index})">🗑 Delete</button>
+          </div>`
         ).join("");
 }
+
+function searchProjects() {
+  let searchText = document.getElementById("projectSearch").value.toLowerCase();
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+  let filtered = projects.filter(item =>
+    item.name.toLowerCase().includes(searchText) ||
+    item.content.toLowerCase().includes(searchText)
+  );
+
+  loadProjects(filtered);
+}
+
 
 function openProject(index) {
   let projects = JSON.parse(localStorage.getItem("projects")) || [];
