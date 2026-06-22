@@ -496,3 +496,32 @@ margin-left: 10px;
   white-space:pre-wrap;
 }
 
+#authBox {
+  max-width: 420px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid #00ff88;
+  border-radius: 16px;
+  text-align: center;
+}
+
+#authBox input {
+  width: 90%;
+  padding: 12px;
+  margin: 8px;
+  border-radius: 10px;
+  border: none;
+}
+
+#authBox button {
+  padding: 10px 18px;
+  margin: 8px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #00ff88;
+  font-weight: bold;
+}
+
+

@@ -6,7 +6,16 @@
 </head>
 <body>
 
-  <div class="container">
+<div id="authBox">
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button id="signupBtn">Sign Up</button>
+  <button id="loginBtn">Login</button>
+  <button id="logoutBtn" style="display:none;">Logout</button>
+  <p id="userInfo"></p>
+</div>
+
+  <div class="container" id="mainApp" style="display:none;">
 
     <div class="logo-badge">⚡ Adi AI Studio</div>
     <div class="version-badge">Version 2.0</div>
@@ -188,5 +197,70 @@ onkeyup="searchHistory()">
   </div>
 
   <script src="script.js"></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut, 
+    onAuthStateChanged 
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6HTSgHnS1G6zJoo_NX06pwlBTWNnBgrg",
+    authDomain: "adi-ai-studio.firebaseapp.com",
+    projectId: "adi-ai-studio",
+    storageBucket: "adi-ai-studio.firebasestorage.app",
+    messagingSenderId: "603053038749",
+    appId: "1:603053038749:web:0ffd4a7c5ab74178cdc874"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const email = document.getElementById("email");
+  const password = document.getElementById("password");
+  const signupBtn = document.getElementById("signupBtn");
+  const loginBtn = document.getElementById("loginBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const userInfo = document.getElementById("userInfo");
+const mainApp = document.getElementById("mainApp");
+
+  signupBtn.onclick = () => {
+    createUserWithEmailAndPassword(auth, email.value, password.value)
+      .then(() => alert("Signup successful ✅"))
+      .catch((error) => alert(error.message));
+  };
+
+  loginBtn.onclick = () => {
+    signInWithEmailAndPassword(auth, email.value, password.value)
+      .then(() => alert("Login successful ✅"))
+      .catch((error) => alert(error.message));
+  };
+
+  logoutBtn.onclick = () => {
+    signOut(auth)
+      .then(() => alert("Logout successful ✅"));
+  };
+
+  onAuthStateChanged(auth, (user) => {
+  if (user) {
+    userInfo.innerText = "Logged in: " + user.email;
+    logoutBtn.style.display = "inline-block";
+    loginBtn.style.display = "none";
+    signupBtn.style.display = "none";
+    mainApp.style.display = "block";
+  } else {
+    userInfo.innerText = "Please login to use Adi AI Studio";
+    logoutBtn.style.display = "none";
+    loginBtn.style.display = "inline-block";
+    signupBtn.style.display = "inline-block";
+    mainApp.style.display = "none";
+  }
+});
+</script>
+
 </body>
 </html>
