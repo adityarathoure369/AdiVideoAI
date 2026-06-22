@@ -11,6 +11,7 @@
   <input type="password" id="password" placeholder="Password">
   <button id="signupBtn">Sign Up</button>
   <button id="loginBtn">Login</button>
+<button id="googleBtn">Login with Google</button>
   <button id="logoutBtn" style="display:none;">Logout</button>
   <p id="userInfo"></p>
 </div>
@@ -200,13 +201,15 @@ onkeyup="searchHistory()">
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { 
-    getAuth, 
-    createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword, 
-    signOut, 
-    onAuthStateChanged 
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
   getFirestore,
@@ -227,6 +230,8 @@ import {
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
 const db = getFirestore(app);
 window.auth = auth;
 window.db = db;
@@ -235,6 +240,7 @@ window.db = db;
   const password = document.getElementById("password");
   const signupBtn = document.getElementById("signupBtn");
   const loginBtn = document.getElementById("loginBtn");
+const googleBtn = document.getElementById("googleBtn");
   const logoutBtn = document.getElementById("logoutBtn");
   const userInfo = document.getElementById("userInfo");
 const mainApp = document.getElementById("mainApp");
@@ -250,6 +256,12 @@ const mainApp = document.getElementById("mainApp");
       .then(() => alert("Login successful ✅"))
       .catch((error) => alert(error.message));
   };
+
+googleBtn.onclick = () => {
+  signInWithPopup(auth, provider)
+    .then(() => alert("Google Login Successful ✅"))
+    .catch((error) => alert(error.message));
+};
 
   logoutBtn.onclick = () => {
     signOut(auth)
