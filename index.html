@@ -208,6 +208,14 @@ onkeyup="searchHistory()">
     onAuthStateChanged 
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
   const firebaseConfig = {
     apiKey: "AIzaSyA6HTSgHnS1G6zJoo_NX06pwlBTWNnBgrg",
     authDomain: "adi-ai-studio.firebaseapp.com",
@@ -219,6 +227,9 @@ onkeyup="searchHistory()">
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+const db = getFirestore(app);
+window.auth = auth;
+window.db = db;
 
   const email = document.getElementById("email");
   const password = document.getElementById("password");
