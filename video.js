@@ -34,7 +34,7 @@ Ultra detailed, 4K, vertical 9:16, viral YouTube Shorts style.
 NEGATIVE PROMPT:
 blurry, low quality, distorted face, bad anatomy, extra fingers, watermark, text errors, shaky camera.`;
 
-  document.getElementById("videoResult").innerText = output;
+  document.getElementById("videoResult").innerText = output;	
 }
 
 function copyVideoPrompt() {

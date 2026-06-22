@@ -169,6 +169,33 @@ Powerful ending with viral feel.`;
 
 }
 
+if (generator === "storyboard") {
+return `🎬 STORYBOARD GENERATOR
+
+🎥 SCENE 1 – Opening
+IMAGE PROMPT:
+Cinematic opening shot of ${topic}, dramatic lighting, ultra detailed, 4K.
+
+🎥 SCENE 2 – Character Introduction
+IMAGE PROMPT:
+Main character of ${topic}, expressive face, detailed environment.
+
+🎥 SCENE 3 – Conflict
+IMAGE PROMPT:
+A major challenge appears in ${topic}, action scene, dynamic camera angle.
+
+🎥 SCENE 4 – Climax
+IMAGE PROMPT:
+Most exciting moment of ${topic}, emotional intensity, cinematic lighting.
+
+🎥 SCENE 5 – Ending
+IMAGE PROMPT:
+Powerful ending of ${topic}, beautiful background, inspirational mood.
+
+📱 VIDEO STYLE:
+Vertical 9:16, YouTube Shorts, Pixar quality, smooth animation.`;
+}
+
 
   if (generator === "allinone") {
     return `🚀 ALL-IN-ONE AI PACKAGE
@@ -581,6 +608,11 @@ function askAdiAI() {
     .replace(/prompt for/gi, "")
     .replace(/ideas for/gi, "")
     .replace(/hook for/gi, "")
+.replace(/voiceover for/gi, "")
+.replace(/scene for/gi, "")
+.replace(/storyboard for/gi, "")
+.replace(/storyboard/gi, "")
+
     .trim();
 
   let answer = "";
@@ -620,6 +652,56 @@ ${topic}, cinematic lighting, ultra detailed, high quality, vertical 9:16, smoot
 4. Funny Story of ${topic}
 5. Emotional Ending of ${topic}`;
   } 
+
+else if (question.includes("voiceover")) {
+  answer = `🎙️ VOICEOVER GENERATOR PRO for "${topic}":
+
+INTRO:
+Hello everyone! Today we are going to watch an amazing story about ${topic}.
+
+HOOK:
+But wait, this is not a normal story. Something unexpected is about to happen.
+
+MAIN VOICEOVER:
+At first, everything looks peaceful. The main character enters the scene with confidence. Suddenly, a big challenge appears, and the story becomes more exciting.
+
+CLIMAX:
+This is the moment where everything changes. The character must make a powerful decision.
+
+ENDING:
+In the end, ${topic} teaches us an important lesson. Never give up, even when things become difficult.
+
+CTA:
+If you enjoyed this video, like, share, and follow for more amazing stories.`;
+
+}
+
+else if (question.includes("storyboard")) {
+answer = `🎬 STORYBOARD GENERATOR PRO for "${topic}":
+
+🎥 SCENE 1 – Opening
+IMAGE PROMPT:
+Cinematic opening shot of ${topic}, dramatic lighting, ultra detailed, 4K, professional movie style.
+
+🎥 SCENE 2 – Character Introduction
+IMAGE PROMPT:
+Main character of ${topic} introduced, expressive face, detailed environment, cinematic composition.
+
+🎥 SCENE 3 – Conflict
+IMAGE PROMPT:
+A major challenge appears in ${topic}, action scene, dynamic camera angle, dramatic atmosphere.
+
+🎥 SCENE 4 – Climax
+IMAGE PROMPT:
+Most exciting moment of ${topic}, emotional intensity, cinematic lighting, epic visual style.
+
+🎥 SCENE 5 – Ending
+IMAGE PROMPT:
+Powerful ending of ${topic}, emotional scene, beautiful background, inspirational mood, 4K quality.
+
+📱 VIDEO STYLE:
+Vertical 9:16, YouTube Shorts, smooth animation, Pixar quality, vibrant colors.`;
+}
 
 else if (question.includes("scene")) {
   answer = `🎬 SCENE GENERATOR PRO for "${topic}":
