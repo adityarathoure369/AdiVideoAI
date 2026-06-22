@@ -6,7 +6,7 @@ function showResult(text) {
   getResultBox().innerText = text;
 }
 
-function generate() {
+async function generate() {
   let topic = document.getElementById("topic").value.trim();
 
   if (topic === "") {
@@ -25,8 +25,34 @@ function generate() {
   increaseGenerateCount();
   saveHistory(topic);
 
-  let output = makeOutput(topic, mode, language, type, duration, platform, generator);
-  showResult(output);
+  showResult("⏳ NVIDIA AI is generating...");
+
+  try {
+    const response = await fetch("http://localhost:3000/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        prompt: `Create ${generator} content for this topic: ${topic}.
+Mode: ${mode}
+Language: ${language}
+Type: ${type}
+Duration: ${duration}
+Platform: ${platform}
+
+Give clean, useful output for a video creator.`
+      })
+    });
+
+    const data = await response.json();
+    const aiText = data.choices?.[0]?.message?.content || data.result || "No AI response received.";
+    showResult(aiText);
+
+  } catch (error) {
+    showResult("❌ Error: NVIDIA AI response nahi aaya. Server check karo.");
+    console.log(error);
+  }
 }
 
 function makeOutput(topic, mode, language, type, duration, platform, generator) {
@@ -593,7 +619,7 @@ function setTemplate(template) {
 
 }
 
-function askAdiAI() {
+async function askAdiAI() {
   let input = document.getElementById("chatInput").value.trim();
 
   if (input === "") {
@@ -601,167 +627,37 @@ function askAdiAI() {
     return;
   }
 
-  let question = input.toLowerCase();
-  let topic = input
-    .replace(/title for/gi, "")
-    .replace(/script for/gi, "")
-    .replace(/prompt for/gi, "")
-    .replace(/ideas for/gi, "")
-    .replace(/hook for/gi, "")
-.replace(/voiceover for/gi, "")
-.replace(/scene for/gi, "")
-.replace(/storyboard for/gi, "")
-.replace(/storyboard/gi, "")
+  document.getElementById("chatResult").innerText = "⏳ NVIDIA AI is thinking...";
 
-    .trim();
+  try {
+    const response = await fetch("http://localhost:3000/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        prompt: `You are Adi AI Assistant. Help the user create YouTube content.
 
-  let answer = "";
+User request: ${input}
 
-  if (question.includes("title")) {
-    answer = `🎯 Title Ideas for "${topic}":
+Give a clean answer with:
+1. Titles
+2. Ideas
+3. Short script
+4. Image/Video prompt
+5. Hashtags if needed`
+      })
+    });
 
-1. The Secret Behind ${topic}
-2. ${topic} Changed Everything
-3. You Won't Believe This ${topic}
-4. The Untold Story of ${topic}
-5. ${topic} | Viral AI Video`;
-  } else if (question.includes("script")) {
-    answer = `🎬 Script for "${topic}":
+    const data = await response.json();
+    const aiText = data.choices?.[0]?.message?.content || data.result || "No AI response received.";
 
-HOOK:
-What if ${topic} changed everything?
+    document.getElementById("chatResult").innerText = aiText;
 
-STORY:
-Today, we are going to explore an amazing story about ${topic}. At first, everything looks normal. But suddenly, something unexpected happens.
-
-ENDING:
-In the end, ${topic} teaches us a powerful lesson.
-
-CTA:
-Like, share and follow for more videos.`;
-  } else if (question.includes("prompt")) {
-    answer = `🖼️ AI Prompt for "${topic}":
-
-${topic}, cinematic lighting, ultra detailed, high quality, vertical 9:16, smooth camera movement, dramatic background, realistic shadows, viral YouTube Shorts style, 4K quality.`;
-  } else if (question.includes("idea")) {
-    answer = `💡 Video Ideas for "${topic}":
-
-1. ${topic} But Something Goes Wrong
-2. ${topic} in 30 Seconds
-3. 5 Amazing Facts About ${topic}
-4. Funny Story of ${topic}
-5. Emotional Ending of ${topic}`;
-  } 
-
-else if (question.includes("voiceover")) {
-  answer = `🎙️ VOICEOVER GENERATOR PRO for "${topic}":
-
-INTRO:
-Hello everyone! Today we are going to watch an amazing story about ${topic}.
-
-HOOK:
-But wait, this is not a normal story. Something unexpected is about to happen.
-
-MAIN VOICEOVER:
-At first, everything looks peaceful. The main character enters the scene with confidence. Suddenly, a big challenge appears, and the story becomes more exciting.
-
-CLIMAX:
-This is the moment where everything changes. The character must make a powerful decision.
-
-ENDING:
-In the end, ${topic} teaches us an important lesson. Never give up, even when things become difficult.
-
-CTA:
-If you enjoyed this video, like, share, and follow for more amazing stories.`;
-
-}
-
-else if (question.includes("storyboard")) {
-answer = `🎬 STORYBOARD GENERATOR PRO for "${topic}":
-
-🎥 SCENE 1 – Opening
-IMAGE PROMPT:
-Cinematic opening shot of ${topic}, dramatic lighting, ultra detailed, 4K, professional movie style.
-
-🎥 SCENE 2 – Character Introduction
-IMAGE PROMPT:
-Main character of ${topic} introduced, expressive face, detailed environment, cinematic composition.
-
-🎥 SCENE 3 – Conflict
-IMAGE PROMPT:
-A major challenge appears in ${topic}, action scene, dynamic camera angle, dramatic atmosphere.
-
-🎥 SCENE 4 – Climax
-IMAGE PROMPT:
-Most exciting moment of ${topic}, emotional intensity, cinematic lighting, epic visual style.
-
-🎥 SCENE 5 – Ending
-IMAGE PROMPT:
-Powerful ending of ${topic}, emotional scene, beautiful background, inspirational mood, 4K quality.
-
-📱 VIDEO STYLE:
-Vertical 9:16, YouTube Shorts, smooth animation, Pixar quality, vibrant colors.`;
-}
-
-else if (question.includes("scene")) {
-  answer = `🎬 SCENE GENERATOR PRO for "${topic}":
-
-SCENE 1 — Opening Shot:
-Show ${topic} in a cinematic environment. Add dramatic lighting, smooth camera movement, and a strong visual opening.
-
-SCENE 2 — Character Entry:
-Introduce the main character related to ${topic}. Show expression, action, and background details.
-
-SCENE 3 — Main Problem:
-Something unexpected happens. Add tension, emotion, or comedy depending on the video style.
-
-SCENE 4 — Big Moment:
-Show the most powerful or funny moment of the story. Add close-up shot, cinematic camera movement, and high energy.
-
-SCENE 5 — Ending Shot:
-End with a strong final visual. Add emotional music, smooth zoom-out, and a viral YouTube Shorts feeling.
-
-VIDEO STYLE:
-Vertical 9:16, 4K quality, cinematic lighting, smooth animation, detailed background.`;
-
-}
-
-else if (question.includes("hook")) {
-    answer = `🔥 Hooks for "${topic}":
-
-1. Wait till you see what happens with ${topic}.
-2. This ${topic} story will surprise you.
-3. You won't believe the ending.
-4. What if ${topic} became real?
-5. This changed everything.`;
-
+  } catch (error) {
+    document.getElementById("chatResult").innerText = "❌ Error: NVIDIA AI response nahi aaya. Server check karo.";
+    console.log(error);
   }
-
- else {
-    answer = `🚀 SMART AI PACKAGE FOR "${input}"
-
-🎯 TITLES:
-1. The Secret Behind ${input}
-2. ${input} Changed Everything
-3. The Untold Story of ${input}
-
-💡 IDEAS:
-1. Funny ${input} Story
-2. Emotional ${input} Journey
-3. Viral ${input} Short
-
-🎬 SCRIPT:
-Start with a powerful hook about ${input}.
-Introduce the main character.
-Add a challenge or surprise.
-End with a strong lesson.
-
-🖼️ PROMPT:
-${input}, cinematic lighting, ultra detailed, 4K quality, viral YouTube Shorts style.`;
-
-}
-
-  document.getElementById("chatResult").innerText = answer;
 }
 
 window.onload = function () {
